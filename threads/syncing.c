@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_to_eat.c                                      :+:      :+:    :+:   */
+/*   syncing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hescoval <hescoval@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 18:24:17 by hescoval          #+#    #+#             */
-/*   Updated: 2024/01/24 16:22:41 by hescoval         ###   ########.fr       */
+/*   Created: 2024/01/24 18:38:27 by hescoval          #+#    #+#             */
+/*   Updated: 2024/01/26 18:25:52 by hescoval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phylo.h"
 
-/* void	dinner_setup(t_general *info)
+void	threads_ready(t_general *info)
 {
-	return;
-} */
+	while(!get_bool(&info->check_value, &info->ready));
+}

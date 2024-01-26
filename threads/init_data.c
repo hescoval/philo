@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hescoval <hescoval@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/26 11:56:29 by hescoval          #+#    #+#             */
+/*   Updated: 2024/01/26 18:31:18 by hescoval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "phylo.h"
 
 void	init_mutexes(t_general *info)
@@ -5,7 +17,8 @@ void	init_mutexes(t_general *info)
 	int	i;
 
 	i = -1;
-
+	mutex_handle(&info->check_value, INIT);
+	mutex_handle(&info->print, INIT);
 	while(++i < info->total_p)
 	{
 		mutex_handle(&info->forks[i].mtx, INIT);
@@ -17,14 +30,15 @@ void	init_phylo(t_general *info)
 {
 	t_philo *philo;
 	int	i;
-
+	
 	i = -1;
 	while (++i < info->total_p)
 	{
 		philo = info->philos + i;
-		philo->p_id = i;
+		mutex_handle(&philo->p_mtx, INIT);
+		philo->p_id = i + 1;
 		philo->info = info;
-		if(i % 2 == 0)
+		if(philo->p_id % 2 == 0)
 		{
 			philo->f_one = &info->forks[i];
 			philo->f_two = &info->forks[(i + 1) % info->total_p];
