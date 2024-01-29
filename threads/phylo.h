@@ -6,7 +6,7 @@
 /*   By: hescoval <hescoval@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:52:25 by hescoval          #+#    #+#             */
-/*   Updated: 2024/01/26 18:16:49 by hescoval         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:10:18 by hescoval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <ctype.h>
-#include "libft/libft.h"
 #include <errno.h>
 #include <stdbool.h>
 
@@ -146,5 +145,7 @@ void	write_handle(moves move, t_philo *philo);
 bool		end_checks(t_philo *philo);
 void		better_usleep(long long time);
 bool	philo_dead(t_philo *philo);
+void	*one_philo(void *data);
+void	clean(t_general *info);
 
 #endif

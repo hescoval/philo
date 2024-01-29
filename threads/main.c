@@ -6,7 +6,7 @@
 /*   By: hescoval <hescoval@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:56:32 by hescoval          #+#    #+#             */
-/*   Updated: 2024/01/26 17:18:22 by hescoval         ###   ########.fr       */
+/*   Updated: 2024/01/29 13:59:39 by hescoval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 	error = init_data(info, av, ac);
 	if(error)
 		return (p_error(error));
-	printf("Death Time: %lld\n", info->death_time);
+/* 	printf("Death Time: %lld\n", info->death_time);
 	printf("Eat Time: %lld\n", info->eat_time);
 	printf("Sleep Time: %lld\n\n", info->sleep_time);
 	for(int i = 0; i < info->total_p; i++)
@@ -37,6 +37,7 @@ int main(int ac, char **av)
 		printf("Fork 2: %d\n", info->philos[i].f_two->f_id);
 		printf("Max Meals: %lld\n", info->max_meals);
 		printf("\n");
-	}
+	} */
 	eat_setup(info);
+	clean(info);
 }

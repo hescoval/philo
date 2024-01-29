@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   hard_code.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hescoval <hescoval@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 11:56:25 by hescoval          #+#    #+#             */
-/*   Updated: 2024/01/29 14:07:38 by hescoval         ###   ########.fr       */
+/*   Created: 2024/01/26 22:18:43 by hescoval          #+#    #+#             */
+/*   Updated: 2024/01/29 13:57:53 by hescoval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phylo.h"
 
-void	clean(t_general *info)
+void	fake_sim(t_philo *philo)
 {
-	int	i;
-
-	i = -1;
-	while (++i < info->total_p)
-	{
-		mutex_handle(&info->forks[i].mtx, DESTROY);
-		mutex_handle(&info->philos[i].p_mtx, DESTROY);
-	}
-	mutex_handle(&info->check_value, DESTROY);
-	mutex_handle(&info->print, DESTROY);
-	free(info->forks);
-	free(info->philos);
-	free(info);
+	write_handle(THINK, philo);
+	mutex_handle(&philo->f_two->mtx, LOCK);
+	write_handle(FORK_TWO, philo);
+	better_usleep(philo->info->death_time);
+	write_handle(DEAD, philo);
+	mutex_handle(&philo->f_two->mtx, UNLOCK);
 }
 
-int	p_error(char *error)
+void	*one_philo(void *data)
 {
-	printf(RED"%s\n"RST, error);
-	return (0);
+	t_philo *philo;
+
+	philo = (t_philo *)data;
+	philo->info->start_time = time_check();
+	fake_sim(philo);
+	return (NULL);
 }

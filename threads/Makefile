@@ -1,7 +1,7 @@
 NAME = phylo
 SRC = *.c
 OBJ = *.o
-CC = gcc -g -pthread -Wall -Wextra -Werror -fsanitize=thread
+CC = gcc -g -pthread -Wall -Wextra -Werror #-fsanitize=thread
 
 all: $(NAME)
 

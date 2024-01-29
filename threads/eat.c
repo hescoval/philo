@@ -6,7 +6,7 @@
 /*   By: hescoval <hescoval@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:03:23 by hescoval          #+#    #+#             */
-/*   Updated: 2024/01/26 19:00:48 by hescoval         ###   ########.fr       */
+/*   Updated: 2024/01/29 13:55:39 by hescoval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,12 @@ void	eat_setup(t_general *info)
 
 	if(info->max_meals == 0)
 		return;
-/* 	if(info->total_p == 1)
-		one_philo(info); */
+	if(info->total_p == 1)
+	{
+		thread_handle(&info->philos[0].thread, one_philo, &info->philos[0], CREATE);
+		thread_handle(&info->philos[0].thread, NULL, NULL, JOIN);
+		return;
+	}
 	else
 	{
 		while(++i < info->total_p)
